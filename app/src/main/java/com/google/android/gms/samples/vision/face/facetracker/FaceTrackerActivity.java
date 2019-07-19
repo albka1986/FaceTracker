@@ -38,11 +38,13 @@ import com.google.android.gms.samples.vision.face.facetracker.ui.camera.GraphicO
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.Tracker;
+import com.google.android.gms.vision.face.Contour;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
+import java.util.List;
 
 public final class FaceTrackerActivity extends AppCompatActivity {
     private static final String TAG = "FaceTracker";
@@ -252,6 +254,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
     private class GraphicFaceTrackerFactory implements MultiProcessor.Factory<Face> {
         @Override
         public Tracker<Face> create(Face face) {
+            List<Contour> contours = face.getContours();
             return new GraphicFaceTracker(mGraphicOverlay);
         }
 
